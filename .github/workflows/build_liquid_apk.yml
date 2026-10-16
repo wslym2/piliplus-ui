@@ -1,0 +1,53 @@
+name: Build Liquid Glass APK
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build-android:
+    name: Build Android Liquid APK
+    runs-on: ubuntu-latest
+    permissions: write-all
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: "zulu"
+          java-version: "17"
+          cache: "gradle"
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          flutter-version: "3.24.5"
+          cache: true
+
+      - name: Apply Framework Patch
+        shell: pwsh
+        run: lib/scripts/patch.ps1 android
+
+      - name: Prebuild & Extract Version
+        shell: pwsh
+        run: lib/scripts/build.ps1 android
+
+      - name: Build Release APK
+        run: flutter build apk --release --split-per-abi --dart-define-from-file=pili_release.json --no-pub
+
+      - name: Upload arm64-v8a APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: PiliPlus_LiquidGlass_arm64-v8a
+          path: build/app/outputs/flutter-apk/*arm64-v8a-release.apk
+
+      - name: Upload armeabi-v7a APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: PiliPlus_LiquidGlass_armeabi-v7a
+          path: build/app/outputs/flutter-apk/*armeabi-v7a-release.apk
