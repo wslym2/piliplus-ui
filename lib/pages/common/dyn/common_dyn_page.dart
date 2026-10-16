@@ -2,6 +2,7 @@ import 'package:PiliPlus/common/skeleton/video_reply.dart';
 import 'package:PiliPlus/common/sliver_single_child_delegate.dart';
 import 'package:PiliPlus/common/style.dart';
 import 'package:PiliPlus/common/widgets/custom_icon.dart';
+import 'package:PiliPlus/common/widgets/liquid_glass_fab.dart';
 import 'package:PiliPlus/common/widgets/loading_widget/http_error.dart';
 import 'package:PiliPlus/common/widgets/scaffold/mini_scaffold.dart';
 import 'package:PiliPlus/common/widgets/scaffold/simple_scaffold.dart';
@@ -345,8 +346,7 @@ mixin CommonDynPageMixin<T extends StatefulWidget>
     child: replyButton,
   );
 
-  Widget get replyButton => FloatingActionButton(
-    heroTag: null,
+  Widget get replyButton => LiquidGlassFab(
     onPressed: () {
       try {
         feedBack();
@@ -359,6 +359,6 @@ mixin CommonDynPageMixin<T extends StatefulWidget>
       } catch (_) {}
     },
     tooltip: '评论',
-    child: const Icon(Icons.reply),
+    icon: const Icon(Icons.reply),
   );
 }

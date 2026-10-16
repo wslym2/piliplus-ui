@@ -1,6 +1,7 @@
 import 'package:PiliPlus/common/skeleton/video_reply.dart';
 import 'package:PiliPlus/common/sliver_single_child_delegate.dart';
 import 'package:PiliPlus/common/style.dart';
+import 'package:PiliPlus/common/widgets/liquid_glass_fab.dart';
 import 'package:PiliPlus/common/widgets/flutter/refresh_indicator.dart';
 import 'package:PiliPlus/common/widgets/loading_widget/http_error.dart';
 import 'package:PiliPlus/common/widgets/scaffold/mini_scaffold.dart';
@@ -126,8 +127,7 @@ class _VideoReplyPanelState extends State<VideoReplyPanel>
                 right: kFloatingActionButtonMargin,
                 bottom: kFloatingActionButtonMargin + bottom,
               ),
-              child: FloatingActionButton(
-                heroTag: null,
+              child: LiquidGlassFab(
                 onPressed: () {
                   feedBack();
                   _videoReplyController.onReply(
@@ -138,7 +138,7 @@ class _VideoReplyPanelState extends State<VideoReplyPanel>
                   );
                 },
                 tooltip: '发表评论',
-                child: const Icon(Icons.reply),
+                icon: const Icon(Icons.reply),
               ),
             ),
           ),

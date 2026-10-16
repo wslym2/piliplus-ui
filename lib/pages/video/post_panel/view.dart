@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:PiliPlus/common/widgets/button/icon_button.dart';
+import 'package:PiliPlus/common/widgets/liquid_glass_fab.dart';
 import 'package:PiliPlus/common/widgets/loading_widget/loading_widget.dart';
 import 'package:PiliPlus/common/widgets/pair.dart';
 import 'package:PiliPlus/common/widgets/scaffold/simple_scaffold.dart';
@@ -301,7 +302,7 @@ class _PostPanelState extends State<PostPanel>
                 right: kFloatingActionButtonMargin,
                 bottom: kFloatingActionButtonMargin + bottom,
               ),
-              child: FloatingActionButton(
+              child: LiquidGlassFab(
                 tooltip: '提交',
                 onPressed: () => showDialog(
                   context: context,
@@ -322,7 +323,7 @@ class _PostPanelState extends State<PostPanel>
                     ],
                   ),
                 ),
-                child: const Icon(Icons.check),
+                icon: const Icon(Icons.check),
               ),
             ),
     );
